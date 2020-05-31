@@ -68,16 +68,25 @@ class LoginController extends Controller
             'email'   => 'required|email',
             'password' => 'required|min:6'
         ]);
-        if (Auth::attempt(['email' => $request->email, 'password' =>$request->password])){
-            return hello;
+
+        $credentials = ['email'=>$request->email,
+        'password'=>$request->password,
+];
+        $attempt = Auth::guard('individual')->attempt(['email' => $request->email, 'password' =>$request->password]);
+
+        return dd($attempt);
+
+        if ($attempt){
+            //return route('home');
+            return Auth::user()->id;
         }
 
-        // if (Auth::guard('individual')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+        else{
+            //return back()->with('error','Invalid Credentials');
+            return "error";
+        }
 
-        //     // return redirect()->intended('/');
-        //     return success ;
-        // }
-        // return back()->withInput($request->only('email', 'remember'));
+       
     }
 
     public function showInstitutionLoginForm()
@@ -98,6 +107,11 @@ class LoginController extends Controller
         //     return redirect()->intended('/institution');
         // }
         return back()->withInput($request->only('email', 'remember'));
+    }
+
+    public function userLogout(){
+        Auth::logout();
+        return  redirect()->route('home.index');
     }
 
 

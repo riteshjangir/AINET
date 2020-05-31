@@ -17,6 +17,7 @@ class RegisterController extends Controller
         $individual->gender = $request->get('gender');
         $individual->age = $request->get('age');
         $individual->experience = $request->get('experience');
+
         // $individual->work = $request->get('work');
 
         if(!empty($request->work)){
@@ -51,6 +52,7 @@ class RegisterController extends Controller
         $individual->password = Hash::make($request->password);
 
         $individual->save();
+        $inserted_id = $individual->id; // Use this id in all tables
         session(['autoid' => "001".str_pad($individual->id,2,"0",STR_PAD_LEFT), "id" => $individual->id, "type" => "indi"]);
         return redirect('register')->with('status','success');
     }

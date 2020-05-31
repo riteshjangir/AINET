@@ -8,7 +8,7 @@
                 <div class="card-header w3-orange w3-border-orange">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('indlogin.post') }}">
                         @csrf
 {{-- <div class="container">
     <div class="row justify-content-center">

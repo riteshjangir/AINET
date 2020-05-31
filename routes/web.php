@@ -18,7 +18,7 @@ Route::get('/login/individual', 'Auth\LoginController@showIndividualLoginForm');
 // // // Route::get('/register/individual', 'Auth\RegisterController@showIndividualRegisterForm');
 // // Route::get('/register/institution', 'Auth\RegisterController@showInstitutionRegisterForm');
 
-Route::post('/login', 'Auth\LoginController@individualLogin');
+Route::post('/indlogin', 'Auth\LoginController@individualLogin')->name('indlogin.post');
 // Route::post('/login/institution', 'Auth\LoginController@institutionLogin');
 // // Route::post('/register/individual', 'Auth\RegisterController@createIndividual');
 // // Route::post('/register/institution', 'Auth\RegisterController@createInstitution');
@@ -28,7 +28,7 @@ Route::post('/login', 'Auth\LoginController@individualLogin');
 // Route::view('/institution', 'institution');
 Route::get('/', function () {
     return view('index');
-});
+})->name('home.index');
 Route::get('/memb_type1', function () {
     return view('memb_type1');
 });
@@ -49,6 +49,8 @@ Route::get('/memb_type4', function () {
 Route::get('/about2', function () {
     return view('about2');
 });
+
+Route::get('user/logout','Auth\LoginController@userLogout')->name('user.logout');
 
 //register page
 Route::get('/register', function(){
