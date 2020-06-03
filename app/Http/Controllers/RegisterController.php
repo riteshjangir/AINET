@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Individual;
+use App\Institution;
+use App\OverIndividual;
+use App\OverInstitution;
+
 
 class RegisterController extends Controller
 {
@@ -153,6 +157,20 @@ class RegisterController extends Controller
         session(['autoid' => "001".str_pad($overInstitution->id,2,"0",STR_PAD_LEFT), "id" => $overInstitution->id, "type" => "over_inst"]);
 
         return redirect('memb_type4')->with('status','success');
+    }
+
+
+
+    public function storedata(){
+
+        $individual = new Individual();
+        $institution = new Institution();
+
+
+       
+
+
+
     }
 }
 

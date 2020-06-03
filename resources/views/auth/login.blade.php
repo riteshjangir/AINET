@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app1')
 
 @section('content')
 <div class="container">
@@ -51,6 +51,30 @@
                                 @enderror
                             </div>
                         </div>
+
+
+                           <div class="form-group row">
+                            <label for="type" class="col-md-4 col-form-label text-md-right">{{"Select Type"}}</label>
+
+                            <div class="col-md-6">
+
+                                  <select id="type" class="form-control" name="type">
+      <option value="1" selected="">Indian -Individual</option>
+      <option value="2">Indian - Institution</option>
+      <option value="3">Overseases -Individual</option>
+      <option value="4">Overseases - Institution</option>
+     
+    </select> 
+                                
+
+                                @error('type')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
 
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">

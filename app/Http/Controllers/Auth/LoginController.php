@@ -66,15 +66,43 @@ class LoginController extends Controller
     {
         $this->validate($request, [
             'email'   => 'required|email',
-            'password' => 'required|min:6'
+            'password' => 'required|min:6',
+            'type'=>'required'
         ]);
 
         $credentials = ['email'=>$request->email,
         'password'=>$request->password,
 ];
-        $attempt = Auth::guard('individual')->attempt(['email' => $request->email, 'password' =>$request->password]);
 
-        return dd($attempt);
+
+        $logintype = $request->type;
+
+        switch ($logintype) {
+            case '1':
+             $attempt = Auth::guard('individual')->attempt(['email' => $request->email, 'password' =>$request->password]); 
+                break;
+
+            case '2':
+                return "type 2";
+                break; 
+
+            case '3':
+                return "type 3";
+                break;   
+
+            case '4':
+                return "type 4";
+                break;          
+            
+            default:
+                return "Something went wrong";
+                break;
+        }
+
+
+        
+
+        
 
         if ($attempt){
             //return route('home');
