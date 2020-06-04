@@ -1,17 +1,26 @@
 <?php
 
 namespace App;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Database\Eloquent\Model;
 
-class OverInstitution extends Model
-{
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'created_at', 'updated_at'
-    ];
-}
+// class Individual extends Model
+// {
+//     //
+// }
+class OverInstitution extends Authenticatable
+    {
+        use Notifiable;
+
+        protected $guard = 'overinstitution';
+
+        protected $fillable = [
+            'name', 'email', 'password',
+        ];
+
+        protected $hidden = [
+            'password', 'remember_token',
+        ];
+    }

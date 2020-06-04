@@ -1,10 +1,26 @@
 <?php
 
 namespace App;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Database\Eloquent\Model;
 
-class OverIndividual extends Model
-{
-    //
-}
+// class Individual extends Model
+// {
+//     //
+// }
+class OverIndividual extends Authenticatable
+    {
+        use Notifiable;
+
+        protected $guard = 'overindividual';
+
+        protected $fillable = [
+            'name', 'email', 'password',
+        ];
+
+        protected $hidden = [
+            'password', 'remember_token',
+        ];
+    }

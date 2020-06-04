@@ -7,6 +7,12 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Individual;
+use App\Institution;
+use App\OverIndividual;
+use App\OverInstitution;
+
+
+
 
 class LoginController extends Controller
 
@@ -57,6 +63,9 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
         $this->middleware('guest:institution')->except('logout');
         $this->middleware('guest:individual')->except('logout');
+        $this->middleware('guest:overindividual')->except('logout');
+        $this->middleware('guest:overinstitution')->except('logout');
+
     }
     public function showIndividualLoginForm()
     {
@@ -73,7 +82,23 @@ class LoginController extends Controller
         $credentials = ['email'=>$request->email,
         'password'=>$request->password,
 ];
+// 
 
+// public function showIndividualLoginForm()
+// {
+//     return view('auth.login', ['url' => 'individual']);
+// }
+// public function individualLogin(Request $request)
+// {
+//     $this->validate($request, [
+//         'email'   => 'required|email',
+//         'password' => 'required|min:6',
+//         'type'=>'required'
+//     ]);
+
+    $credentials = ['email'=>$request->email,
+    'password'=>$request->password,
+];
 
         $logintype = $request->type;
 
@@ -83,16 +108,16 @@ class LoginController extends Controller
                 break;
 
             case '2':
-                return "type 2";
-                break; 
+                $attempt = Auth::guard('institution')->attempt(['email' => $request->email, 'password' =>$request->password]); 
+                    break; 
 
             case '3':
-                return "type 3";
-                break;   
+                $attempt = Auth::guard('overindividual')->attempt(['email' => $request->email, 'password' =>$request->password]); 
+                    break;   
 
             case '4':
-                return "type 4";
-                break;          
+                $attempt = Auth::guard('OverInstitution')->attempt(['email' => $request->email, 'password' =>$request->password]); 
+                    break;          
             
             default:
                 return "Something went wrong";
@@ -105,8 +130,8 @@ class LoginController extends Controller
         
 
         if ($attempt){
-            //return route('home');
-            return Auth::user()->id;
+            return route('home');
+            // return Auth::user()->id;
         }
 
         else{
@@ -117,25 +142,7 @@ class LoginController extends Controller
        
     }
 
-    public function showInstitutionLoginForm()
-    {
-        return view('auth.login', ['url' => 'institution']);
-    }
-
-    public function institutionLogin(Request $request)
-    {
-        $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:6'
-        ]);
-       
-
-        // if (Auth::guard('institution')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-
-        //     return redirect()->intended('/institution');
-        // }
-        return back()->withInput($request->only('email', 'remember'));
-    }
+   
 
     public function userLogout(){
         Auth::logout();

@@ -165,6 +165,8 @@ class RegisterController extends Controller
 
         $individual = new Individual();
         $institution = new Institution();
+        $overindividual = new OverIndividual();
+        $overinstitution = new OverInstitution();
 
 
        
