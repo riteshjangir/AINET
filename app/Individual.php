@@ -12,15 +12,24 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 // }
 class Individual extends Authenticatable
     {
-        use Notifiable;
+        // use Notifiable;
+        protected $guarded = ['id'];
 
-        protected $guard = 'individual';
 
-        protected $fillable = [
-            'name', 'email', 'password',
-        ];
+        // protected $guard = 'individuals';
+
+        // protected $fillable = [
+        //     'name', 'email', 'ind_password',
+        // ];
 
         protected $hidden = [
-            'password', 'remember_token',
+            'ind_password', 'remember_token',
         ];
+        public function getAuthPassword()
+        {
+         return $this->ind_password;
+
+
+        }
+
     }

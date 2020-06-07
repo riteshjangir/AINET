@@ -8,7 +8,7 @@
                 <div class="card-header w3-orange w3-border-orange">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('indlogin.post') }}">
+                    <form method="POST" action="{{ route('login') }}">
                         @csrf
 {{-- <div class="container">
     <div class="row justify-content-center">
@@ -39,12 +39,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="ind_password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="ind_password" type="password" class="form-control @error('ind_password') is-invalid @enderror" name="ind_password" required autocomplete="current-password">
 
-                                @error('password')
+                                @error('ind_password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -53,7 +53,7 @@
                         </div>
 
 
-                           <div class="form-group row">
+                           {{-- <div class="form-group row">
                             <label for="type" class="col-md-4 col-form-label text-md-right">{{"Select Type"}}</label>
 
                             <div class="col-md-6">
@@ -64,7 +64,7 @@
       <option value="3">Overseases -Individual</option>
       <option value="4">Overseases - Institution</option>
      
-    </select> 
+    </select>  --}}
                                 
 
                                 @error('type')
@@ -76,7 +76,7 @@
                         </div>
 
 
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -86,7 +86,7 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
@@ -95,9 +95,9 @@
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn w3-text-orange" href="{{ route('password.request') }}">
+                                    {{-- <a class="btn w3-text-orange" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
-                                    </a>
+                                    </a> --}}
                                 @endif
                             </div>
                         </div>

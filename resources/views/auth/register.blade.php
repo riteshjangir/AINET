@@ -380,9 +380,9 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="password">Password</label>
-                                                <input type="password" class="form-control" name="password"
-                                                    id="password" placeholder="Enter Ypur Password" required>
+                                                <label for="ind_password">Password</label>
+                                                <input type="password" class="form-control" name="ind_password"
+                                                    id="ind_password" placeholder="Enter Your Password" required>
                                             </div>
                                             <button type="submit" class="btn w3-orange btn-lg btn-block"
                                                 style="background-color:#DF068C;padding:0px 10px 10px 10px;color:white;">Save

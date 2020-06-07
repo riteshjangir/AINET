@@ -46,15 +46,31 @@ return [
             'provider' => 'users',
         ],
 
-        'institution' => [
-            'driver' => 'session',
-            'provider' => 'institutions',
-        ],
+        // 'institution' => [
+
+        //     'driver' => 'session',
+        //     'provider' => 'institutions',
+        // ],
         
         'individual' => [
+            // ‘redirectTo’ => ‘dashboard’,
+
             'driver' => 'session',
-            'provider' => 'individuals',
+            'provider' => 'individual',
         ],
+      
+        // 'overindividual' => [
+        //     'driver' => 'session',
+        //     'provider' => 'overindividuals',
+        // ],
+         
+        // 'overinstitution' => [
+        //     'driver' => 'session',
+        //     'provider' => 'overinstitutions',
+        // ],
+       
+        
+        
     ],
     /*
     |--------------------------------------------------------------------------
@@ -78,20 +94,37 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+        
 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
-        'institutions' => [
-            'driver' => 'eloquent',
-            'model' => App\Institution::class,
-        ],
+        // 'institutions' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Institution::class,
+        // ],
 
-        'individuals' => [
+        'individual' => [
+
+            
             'driver' => 'eloquent',
             'model' => App\Individual::class,
         ],
+      
+
+
+
+        // 'overindividuals' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\OverIndividual::class,
+        // ],
+
+
+        // 'overinstitutions' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\OverInstitution::class,
+        // ],
     ],
 
     /*
@@ -109,12 +142,14 @@ return [
     |
     */
 
-    'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => 'password_resets',
-            'expire' => 60,
-        ],
-    ],
+    // 'passwords' => [
+    //     'users' => [
+    //         'provider' => 'users',
+    //         'table' => 'password_resets',
+    //         'expire' => 60,
+    //     ],
+    // ],
+
+    
 
 ];

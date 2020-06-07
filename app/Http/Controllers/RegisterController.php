@@ -53,7 +53,7 @@ class RegisterController extends Controller
         $individual->pincode = $request->get('pincode');
         $individual->expectations = $request->get('expectations');
         $individual->receive = $request->get('receive');
-        $individual->password = Hash::make($request->password);
+        $individual->ind_password = Hash::make($request->ind_password);
 
         $individual->save();
         $inserted_id = $individual->id; // Use this id in all tables

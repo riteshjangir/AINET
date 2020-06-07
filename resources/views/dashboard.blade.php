@@ -1,6 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.app1')
 
 @section('content')
+<br>
+<br>
+<br>
+<br>
+<br>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -15,6 +21,11 @@
                     @endif
 
                     You are logged in!
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Logout</button>
+                    </form>\
+
                 </div>
             </div>
         </div>

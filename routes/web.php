@@ -13,12 +13,12 @@
 
 // Auth::routes();
 
-Route::get('/login/individual', 'Auth\LoginController@showIndividualLoginForm');
+// Route::get('/login/individual', 'Auth\LoginController@showIndividualLoginForm');
 // Route::get('/login/institution', 'Auth\LoginController@showInstitutionLoginForm');
 // // // Route::get('/register/individual', 'Auth\RegisterController@showIndividualRegisterForm');
 // // Route::get('/register/institution', 'Auth\RegisterController@showInstitutionRegisterForm');
 
-Route::post('/indlogin', 'Auth\LoginController@individualLogin')->name('indlogin.post');
+// Route::post('/indlogin', 'Auth\LoginController@individualLogin')->name('indlogin.post');
 // Route::post('/login/institution', 'Auth\LoginController@institutionLogin');
 // // Route::post('/register/individual', 'Auth\RegisterController@createIndividual');
 // // Route::post('/register/institution', 'Auth\RegisterController@createInstitution');
@@ -42,15 +42,19 @@ Route::get('/memb_type4', function () {
     return view('memb_type4');
 });
 
+Route::get('/dashboard', function(){
+    return view('dashboard');
+});
 
-// Route::get('/index', function () {
-//     return view('index');
-// });
+
+
 Route::get('/about2', function () {
     return view('about2');
 });
 
-Route::get('user/logout','Auth\LoginController@userLogout')->name('user.logout');
+// Route::get('user/logout','Auth\LoginController@userLogout');
+Route::get('/login','LoginController@index');
+
 
 //register page
 Route::get('/register', function(){
@@ -90,6 +94,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/about', function(){
     return view('about');
 });
+
+// Route::get('/logout', function(){
+//     return view('logout');
+// });
+
 Route::get('/about1', function(){
     return view('about1');
 });
@@ -184,3 +193,17 @@ Route::get('print/form', function(){
 
     return view('print', compact('inst','indi'));
 });
+
+// multilogin route
+
+Route::prefix('individual')
+    ->as('individual.')
+    ->group(function() {
+        Route::get('dashboard', 'Home\IndividualHomeController@index')->name('dashboard');
+    Route::namespace('Auth\Login')
+      ->group(function() {
+       Route::get('login', 'Auth\Login\IndividualController@showLoginForm')->name('login');
+        Route::post('login', 'Auth\Login\IndividualController@login')->name('login');
+        Route::post('logout', 'IndividualController@logout')->name('logout');
+      });
+ });
